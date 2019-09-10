@@ -106,7 +106,6 @@
             $.ajax({
                 type: "get",
                 url: base + "/getCookie",
-                contentType: "application/json;charset=utf-8",
                 xhrFields: {
                     withCredentials: true//发送ajax请求的时候会带上cookie
                 },
@@ -119,6 +118,35 @@
             setTimeout(function () {
                 expect(result).toEqual({
                     "data": "getCookie shanshan"
+                });
+
+                // 校验完成，通知jasmine框架
+                done();
+            }, 100);
+        });
+
+        it("getHeader请求", function (done) {
+            // 服务器返回的结果
+            var result;
+
+            $.ajax({
+                type: "get",
+                url: base + "/getHeader",
+                headers: {
+                    "x-header1": "AAA"
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("x-header2", "BBB")
+                },
+                success: function (json) {
+                    result = json;
+                }
+            });
+
+            // 由于是异步请求，需要使用setTimeout来校验
+            setTimeout(function () {
+                expect(result).toEqual({
+                    "data": "getHeader AAA BBB"
                 });
 
                 // 校验完成，通知jasmine框架
