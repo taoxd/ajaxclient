@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AJAX跨越完全讲解</title>
-    <script src="jquery-1.11.3.min.js"></script>
+    <script src="jquery-1.11.3.js"></script>
     <link rel="stylesheet" type="text/css" href="jasmine-2.8.0/jasmine.css">
 
     <script src="jasmine-2.8.0/jasmine.js"></script>
@@ -27,7 +27,7 @@
     var base = "http://localhost:8080/test";
 
     //测试模块
-    describe("jsonp请求", function () {
+/*    describe("jsonp请求", function () {
         // 测试方法
         it("get1请求", function (done) {
             // 服务器返回的结果
@@ -36,6 +36,8 @@
             $.ajax({
                 url: base + "/get1",
                 dataType: "jsonp",
+                jsonp: "callback2",//响应js函数名
+                cache: true,//缓存
                 success: function (json) {
                     result = json;
                 }
@@ -51,7 +53,7 @@
                 done();
             }, 100);
         });
-    });
+    });*/
 
     //测试模块
     describe("ajax跨越完全讲解", function () {
